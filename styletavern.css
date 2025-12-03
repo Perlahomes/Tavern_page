@@ -1,4 +1,5 @@
 /* Global styles */
+/* Global styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -80,27 +81,25 @@ h2 {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1rem; /* smaller heart */
+  font-size: 1rem; /* default heart size */
   display: inline-flex;
   align-items: center;
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .like-btn:hover {
-  transform: scale(1.1); /* subtle hover scale */
+  transform: scale(1.1);
 }
 
-/* Liked state */
 .like-btn.liked {
   color: red;
-  transform: scale(1.1); /* smaller liked scale */
+  transform: scale(1.1);
 }
 
-/* Like count next to heart */
 .like-count {
   margin-left: 4px;
   font-weight: bold;
-  font-size: 0.9rem; /* smaller count */
+  font-size: 0.9rem;
 }
 
 /* Footer */
@@ -110,4 +109,35 @@ footer {
   background: #222;
   color: white;
   font-size: 0.9rem;
+}
+
+/* ===== Mobile adjustments ===== */
+@media (max-width: 600px) {
+  .hero {
+    padding: 60px 15px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .like-btn {
+    font-size: 0.8rem; /* smaller heart on mobile */
+  }
+
+  .like-count {
+    font-size: 0.7rem; /* smaller count on mobile */
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
 }
