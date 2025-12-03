@@ -93,13 +93,13 @@ h2 {
 
 .like-btn.liked {
   color: red;
-  transform: scale(1.1);
+  transform: scale(1.0);
 }
 
 .like-count {
   margin-left: 4px;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
 }
 
 /* Footer */
@@ -126,11 +126,11 @@ footer {
   }
 
   .like-btn {
-    font-size: 0.8rem; /* smaller heart on mobile */
+    font-size: 0.6rem; /* smaller heart on mobile */
   }
 
   .like-count {
-    font-size: 0.7rem; /* smaller count on mobile */
+    font-size: 0.5rem; /* smaller count on mobile */
   }
 
   .card {
