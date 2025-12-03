@@ -8,7 +8,7 @@
 </head>
 <body>
   <header class="hero">
-    <h1>Welcome <br>To Our Local Guide</h1>
+    <h1>Gastronomic Suggestions</h1>
     <p>Discover the best restaurants, bars, cafes, and taverns in Kalamata!</p>
   </header>
 
@@ -189,26 +189,62 @@
 
   <!-- LocalStorage Like Button Script -->
   <script>
-    const likeButtons = document.querySelectorAll('.like-btn');
+const likeButtons = document.querySelectorAll('.like-btn');
 
-    likeButtons.forEach(btn => {
-      const card = btn.closest('.card');
-      const tavernId = card.dataset.id;
-      const countSpan = btn.querySelector('.like-count');
+// Define initial likes for each tavern
+const initialLikes = {
+  "laterna": 560,
+  "kardamo": 330,
+  "xagiati": 280,
+  "leonidas": 220,
+  "kourkoutas": 200,
+  "to-limeni": 190,
+  "secada": 308,
+  "almyra": 402,
+  "ginger": 333,
+  "kastraki": 590,
+  "secada-square": 777,
+  "blossom-owl": 288,
+  "top-billiards": 477
+};
 
-      // Load stored likes from localStorage
-      const storedLikes = localStorage.getItem(tavernId);
-      countSpan.textContent = storedLikes ? storedLikes : 0;
+likeButtons.forEach(btn => {
+  const card = btn.closest('.card');
+  const tavernId = card.dataset.id;
+  const countSpan = btn.querySelector('.like-count');
 
-      btn.addEventListener('click', () => {
-        let count = parseInt(countSpan.textContent);
-        count++;
-        countSpan.textContent = count;
+  // Get stored likes count
+  let currentLikes = parseInt(localStorage.getItem(`likes-${tavernId}`)) || initialLikes[tavernId] || 0;
+  countSpan.textContent = currentLikes;
 
-        // Save updated count in localStorage
-        localStorage.setItem(tavernId, count);
-      });
-    });
-  </script>
+  // Check if user has liked this tavern
+  let userLiked = localStorage.getItem(`liked-${tavernId}`) === 'true';
+
+  // Set initial heart state
+  if(userLiked) {
+    btn.classList.add('liked');
+  }
+
+  btn.addEventListener('click', () => {
+    if(userLiked) {
+      // Unlike
+      currentLikes--;
+      btn.classList.remove('liked');
+      localStorage.setItem(`liked-${tavernId}`, false);
+      userLiked = false;
+    } else {
+      // Like
+      currentLikes++;
+      btn.classList.add('liked');
+      localStorage.setItem(`liked-${tavernId}`, true);
+      userLiked = true;
+    }
+    // Save updated likes count
+    countSpan.textContent = currentLikes;
+    localStorage.setItem(`likes-${tavernId}`, currentLikes);
+  });
+});
+</script>
+
 </body>
 </html>
